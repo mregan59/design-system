@@ -10,7 +10,8 @@
       "moduleResolution": "node",
       "noEmit": true,
       "strict": true,
-      "target": "esnext"
+      "target": "esnext",
+      "module": "commonjs",
     },
     "exclude": [
       "node_modules",

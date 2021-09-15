@@ -10,20 +10,24 @@
 
 import React from 'react'
 import { ImageProps, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Button as UIButton, ButtonProps as UIButtonProps, styled, Interaction, Text } from '@ui-kitten/components'
+import { Button, Text } from '@ui-kitten/components'
 import { IconButton } from '../IconButton'
 import { FlexBox } from '../FlexBox'
 import { MoreHorizontalIcon } from '../../../assets/icons'
 import { useToggle } from '../../hooks'
+import { useStores } from '../../store'
+import { observer } from 'mobx-react-lite'
 
 import { View as MotiView, AnimatePresence } from 'moti'
 
-export const DropdownMenu = ({ open, Icon }) => {
+export const DropdownMenu = observer(({ open, Icon }) => {
     const [isOpen, setIsOpen] = useToggle(open)
-
+    const { test } = useStores()
     return (
         <React.Fragment>
             <FlexBox style={{ position: 'relative' }} alignstart justifycenter>
+                <Text>{test.name}</Text>
+                <Button onPress={() => test.setName('Thomas')}>test</Button>
                 <IconButton onPress={setIsOpen} Icon={Icon || MoreHorizontalIcon} />
                 <AnimatePresence>
                     {isOpen && (
@@ -50,4 +54,4 @@ export const DropdownMenu = ({ open, Icon }) => {
             </FlexBox>
         </React.Fragment>
     )
-}
+})
